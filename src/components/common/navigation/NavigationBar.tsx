@@ -10,26 +10,30 @@ import styled from 'styled-components';
 const navMenu = [
   {
     icon: <MdOutlineExplore size={24} />,
+    link: '/',
     title: '탐색',
   },
   {
     icon: <MdCheckBox size={24} />,
+    link: '/personalRoadmap',
     title: '로드맵',
   },
   {
     icon: <MdOutlineNotificationsNone size={24} />,
+    link: '/',
     title: '알림',
   },
 
   {
     icon: <MdSettings size={24} />,
+    link: '/',
     title: '설정',
   },
 ];
 
 function NavigationBar() {
   const [selectedMenu, setSelectedMenu] = useState(navMenu[0].icon);
-
+  //bp인지는 모르겠는데 button으로 구현해야될것 같기도?
   return (
     <Nav>
       <div>
@@ -39,7 +43,7 @@ function NavigationBar() {
       <Ul>
         {navMenu.map((item, idx) => (
           <Li key={idx}>
-            <Link href="#" onClick={() => setSelectedMenu(item.icon)}>
+            <Link href={item.link} onClick={() => setSelectedMenu(item.icon)}>
               <div>{item.icon}</div>
               <Title>{item.title}</Title>
             </Link>

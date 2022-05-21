@@ -40,7 +40,7 @@ function Roadmap() {
   return (
     <Container>
       {roadmapData.map((item, idx) => (
-        <Link href={`/roadmap/${item.id}`} key={idx}>
+        <Link href={`/roadmap/${item.id}`} key={item.id}>
           <a>
             <RoadmapCard />
           </a>
@@ -52,8 +52,9 @@ function Roadmap() {
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 365px 365px;
   gap: 48px;
+
   //이거 뭐더라
   /* @media screen {
     display: block;

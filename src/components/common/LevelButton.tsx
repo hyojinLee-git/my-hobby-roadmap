@@ -1,23 +1,19 @@
 import React from 'react';
-import { MdCheck } from 'react-icons/md';
 import styled from 'styled-components';
 
-function CategoryButton({
-  name,
+function LevelButton({
+  title,
   selected,
+  lock,
 }: {
-  name: string;
+  title: string;
   selected: boolean;
+  lock: boolean;
 }) {
-  return (
-    <Button selected={selected}>
-      {/* {selected && <MdCheck size={24} />} */}
-      {name}
-    </Button>
-  );
+  return <Button selected={selected}>{title}</Button>;
 }
+
 const Button = styled.button`
-  display: block;
   background-color: ${(props: { selected: boolean }) =>
     props.selected ? '#1970C6' : '#FFF'};
   height: 44px;
@@ -28,4 +24,5 @@ const Button = styled.button`
   color: ${(props: { selected: boolean }) =>
     props.selected ? 'white' : '#1C1B1F'};
 `;
-export default CategoryButton;
+
+export default LevelButton;
