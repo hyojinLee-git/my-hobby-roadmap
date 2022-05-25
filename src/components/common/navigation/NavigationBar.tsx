@@ -4,6 +4,8 @@ import {
   MdCheckBox,
   MdOutlineNotificationsNone,
   MdSettings,
+  MdModeEdit,
+  MdVideogameAsset,
 } from 'react-icons/md';
 import styled from 'styled-components';
 
@@ -14,9 +16,19 @@ const navMenu = [
     title: '탐색',
   },
   {
+    icon: <MdModeEdit size={24} />,
+    link: '/til',
+    title: 'TIL',
+  },
+  {
     icon: <MdCheckBox size={24} />,
     link: '/personalRoadmap',
     title: '로드맵',
+  },
+  {
+    icon: <MdVideogameAsset size={24} />,
+    link: '/',
+    title: '게임',
   },
   {
     icon: <MdOutlineNotificationsNone size={24} />,

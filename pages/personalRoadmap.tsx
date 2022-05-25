@@ -70,7 +70,12 @@ function personalRoadmap() {
           <CategoryButton name={item.name} key={idx} selected={item.selected} />
         ))}
         {roadmapList1.map((item, idx) => (
-          <RoadmapCard key={idx} />
+          <RoadmapCard
+            key={idx}
+            name={item.name}
+            date={item.date}
+            progress={item.progress}
+          />
         ))}
       </div>
     </div>
