@@ -2,6 +2,7 @@ import Header from '@/components/common/Header';
 import DatePicker from '@/components/TIL/DatePicker';
 import React from 'react';
 import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
+import Editor from './Editor';
 
 const dateData = [
   {
@@ -82,7 +83,9 @@ function TodayILearn() {
       <div>
         <h2>로드맵1 3/26</h2>
       </div>
-      <div>editor</div>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <Editor />
+      </div>
     </div>
   );
 }
