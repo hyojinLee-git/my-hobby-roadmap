@@ -38,7 +38,7 @@ const navMenu = [
 
   {
     icon: <MdSettings size={24} />,
-    link: '/',
+    link: '/setting',
     title: '설정',
   },
 ];
