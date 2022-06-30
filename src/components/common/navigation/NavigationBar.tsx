@@ -32,7 +32,7 @@ const navMenu = [
   },
   {
     icon: <MdOutlineNotificationsNone size={24} />,
-    link: '/',
+    link: '/alarm',
     title: '알림',
   },
 
