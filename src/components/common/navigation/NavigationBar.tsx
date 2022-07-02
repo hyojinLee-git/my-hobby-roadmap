@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import { selectedMenu } from '@/recoil/global';
+import { useRouter } from 'next/router';
+import React, { useEffect, useState } from 'react';
 import {
   MdOutlineExplore,
   MdCheckBox,
@@ -7,6 +9,7 @@ import {
   MdModeEdit,
   MdVideogameAsset,
 } from 'react-icons/md';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 
 const navMenu = [
@@ -44,18 +47,21 @@ const navMenu = [
 ];
 
 function NavigationBar() {
-  const [selectedMenu, setSelectedMenu] = useState(navMenu[0].icon);
-  //bp인지는 모르겠는데 button으로 구현해야될것 같기도?
+  const [menu, setMenu] = useRecoilState(selectedMenu);
+  const router = useRouter();
+  useEffect(() => {
+    setMenu(navMenu.find((item) => item.link === router.pathname)?.icon);
+  }, [router.pathname, setMenu]);
   return (
     <Nav>
       <div>
         <button>hamberger</button>
       </div>
-      <SelectedMenu>{selectedMenu}</SelectedMenu>
+      <SelectedMenu>{menu}</SelectedMenu>
       <Ul>
         {navMenu.map((item, idx) => (
           <Li key={idx}>
-            <Link href={item.link} onClick={() => setSelectedMenu(item.icon)}>
+            <Link href={item.link} onClick={() => setMenu(item.icon)}>
               <div>{item.icon}</div>
               <Title>{item.title}</Title>
             </Link>
