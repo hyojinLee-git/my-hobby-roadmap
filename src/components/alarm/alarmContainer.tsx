@@ -18,7 +18,6 @@ function AlarmContainer({ data }: IProps) {
 }
 
 const Container = styled.div`
-  width: 800px;
   height: 120px;
   border: 0.25px solid rgba(0, 0, 0, 0.5);
   margin-bottom: 33px;

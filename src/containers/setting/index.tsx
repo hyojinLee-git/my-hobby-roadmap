@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 function SettingScreen() {
   return (
-    <div style={{ width: '80%' }}>
+    <Container>
       <Header title="환경설정" />
       <div>
         <SubTitle>내 프로필</SubTitle>
@@ -33,10 +33,14 @@ function SettingScreen() {
         <SubTitle>로그아웃</SubTitle>
         <button>로그아웃</button>
       </div>
-    </div>
+    </Container>
   );
 }
-
+const Container = styled.div`
+  flex: 3;
+  border: 1px solid red;
+  margin-top: 85px;
+`;
 const SubTitle = styled.h2`
   font-size: 24;
   font-weight: 500;
@@ -44,7 +48,7 @@ const SubTitle = styled.h2`
   margin-top: 34px;
 `;
 const Profile = styled.div`
-  width: 1100px;
+  /* width: 1100px; */
   height: 120px;
   border: 0.25px solid rgba(0, 0, 0, 0.5);
   display: flex;

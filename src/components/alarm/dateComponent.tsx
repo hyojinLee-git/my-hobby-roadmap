@@ -10,7 +10,6 @@ function DateComponent({ sendAt }: IProps) {
 }
 
 const Container = styled.div`
-  width: 800px;
   height: 30px;
   border-left: 2px solid #000000;
   display: flex;

@@ -17,7 +17,7 @@ function DatePicker({ date, written, selected }: IProps) {
 }
 
 const Container = styled.div`
-  width: 85px;
+  width: 95px;
   height: 120px;
   display: flex;
   flex-direction: column;
@@ -26,6 +26,12 @@ const Container = styled.div`
   padding: 12px 0;
   background-color: ${(props: { selected: boolean }) =>
     props.selected && 'rgba(135, 220, 180, 0.2)'};
+  @media screen and (max-width: 1200px) {
+    width: 75px;
+  }
+  @media screen and (max-width: 1100px) {
+    width: 70px;
+  }
 `;
 const Circle = styled.div`
   width: 50px;

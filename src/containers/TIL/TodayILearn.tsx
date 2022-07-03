@@ -59,7 +59,7 @@ const dateData = [
 
 function TodayILearn() {
   return (
-    <div>
+    <div style={{ flex: 3, marginTop: '85px' }}>
       <Header title={'Today I Learn'} />
       <div
         style={{
@@ -67,6 +67,8 @@ function TodayILearn() {
           border: '0.25px solid #00000080',
           borderRadius: 20,
           alignItems: 'center',
+          maxWidth: '1086px',
+          justifyContent: 'center',
         }}
       >
         <MdChevronLeft size={50} />
