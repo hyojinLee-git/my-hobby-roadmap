@@ -8,6 +8,7 @@ import {
   MdSettings,
   MdModeEdit,
   MdVideogameAsset,
+  MdMenu,
 } from 'react-icons/md';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
@@ -15,7 +16,7 @@ import styled from 'styled-components';
 const navMenu = [
   {
     icon: <MdOutlineExplore size={24} />,
-    link: '/',
+    link: '/roadmap',
     title: '탐색',
   },
   {
@@ -49,13 +50,19 @@ const navMenu = [
 function NavigationBar() {
   const [menu, setMenu] = useRecoilState(selectedMenu);
   const router = useRouter();
+
   useEffect(() => {
-    setMenu(navMenu.find((item) => item.link === router.pathname)?.icon);
+    setMenu(
+      navMenu.find((item) => item.link === `/${router.pathname.split('/')[1]}`)
+        ?.icon,
+    );
   }, [router.pathname, setMenu]);
   return (
     <Nav>
-      <div>
-        <button>hamberger</button>
+      <div style={{ marginBottom: '16px' }}>
+        <HamburgerBtn>
+          <MdMenu size={23} />
+        </HamburgerBtn>
       </div>
       <SelectedMenu>{menu}</SelectedMenu>
       <Ul>
@@ -72,12 +79,21 @@ function NavigationBar() {
   );
 }
 const Nav = styled.nav`
-  flex: 1;
   max-width: 220px;
-  border: '1px solid red';
+  min-width: 180px;
+  border: 1px solid red;
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex: 2;
+  padding-top: 55px;
+  margin-top: 23px;
+`;
+
+const HamburgerBtn = styled.button`
+  background: none;
+  outline: none;
+  border: none;
 `;
 
 const SelectedMenu = styled.div`
