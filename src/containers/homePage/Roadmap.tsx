@@ -4,45 +4,39 @@ import React from 'react';
 import styled from 'styled-components';
 
 const roadmapData = [
-  {
-    id: 1,
-    title: 'title',
-    description: 'description',
-  },
-  {
-    id: 2,
-    title: 'title',
-    description: 'description',
-  },
-  {
-    id: 3,
-    title: 'title',
-    description: 'description',
-  },
-  {
-    id: 4,
-    title: 'title',
-    description: 'description',
-  },
-  {
-    id: 5,
-    title: 'title',
-    description: 'description',
-  },
-  {
-    id: 6,
-    title: 'title',
-    description: 'description',
-  },
+  '사업관리',
+  '기획사무',
+  '금융',
+  '평생교육',
+  '보건',
+  '사회복지',
+  '문화·예술',
+  '자동차운전·운송',
+  '영업',
+  '경비',
+  '이·미용',
+  '식음료조리·서비스',
+  '건설공사관리',
+  '기계설계',
+  '금속재료',
+  '화학물질·화학공정품질관리',
+  '섬유제조',
+  '전기',
+  '정보기술',
+  '식품가공',
+  '인쇄·출판',
+  '산업환경',
 ];
+
+const sample = require('@/sampleResponse/sample.json');
 
 function Roadmap() {
   return (
     <Container>
-      {roadmapData.map((item, idx) => (
-        <Link href={`/roadmap/${item.id}`} key={item.id}>
+      {roadmapData?.map((item: any, idx: number) => (
+        <Link href={`/roadmap/${idx + 1}`} key={idx}>
           <a>
-            <RoadmapCard />
+            <RoadmapCard title={item} />
           </a>
         </Link>
       ))}

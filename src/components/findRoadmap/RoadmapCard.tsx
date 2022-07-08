@@ -2,11 +2,15 @@ import React from 'react';
 import { MdSend } from 'react-icons/md';
 import styled from 'styled-components';
 
-function RoadmapCard() {
+interface IProps {
+  title: string;
+}
+
+function RoadmapCard({ title }: IProps) {
   return (
     <Container>
       <TitleBox>
-        <Title>로드맵 이름</Title>
+        <Title>{title}</Title>
         <Button>
           <MdSend size={24} />
         </Button>

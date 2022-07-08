@@ -1,0 +1,142 @@
+{
+  "data": [
+    {
+      "ncsLclasCd": "01",
+      "ncsLclasCdnm": "사업관리",
+      "ncsMclasCd": "01",
+      "ncsMclasCdnm": "사업관리",
+      "ncsSclasCd": "01",
+      "ncsSclasCdnm": "프로젝트관리",
+      "ncsSubdCd": "01",
+      "ncsSubdCdnm": "공적개발원조사업관리",
+      "learnModulSeq": "EDU20161201818",
+      "learnModulName": "공적개발원조사업 개발 전략 수립",
+      "learnModulText": "협력대상국 개발 환경, 개발 전략, SWOT 분석, 지원 현황, 협력 전략, 이행 전략, 성과 관리"
+    },
+    {
+      "ncsLclasCd": "01",
+      "ncsLclasCdnm": "사업관리",
+      "ncsMclasCd": "01",
+      "ncsMclasCdnm": "사업관리",
+      "ncsSclasCd": "01",
+      "ncsSclasCdnm": "프로젝트관리",
+      "ncsSubdCd": "01",
+      "ncsSubdCdnm": "공적개발원조사업관리",
+      "learnModulSeq": "EDU20161201820",
+      "learnModulName": "공적개발원조사업 사업 기획",
+      "learnModulText": "협력대상국, 개발 전략, 개발 수요, 사업 심사 평가표, 타당성 조사, 실시 협의, 예산 요구서, 기본 약정, ROD, TOR, 구상서"
+    },
+    {
+      "ncsLclasCd": "01",
+      "ncsLclasCdnm": "사업관리",
+      "ncsMclasCd": "01",
+      "ncsMclasCdnm": "사업관리",
+      "ncsSclasCd": "01",
+      "ncsSclasCdnm": "프로젝트관리",
+      "ncsSubdCd": "01",
+      "ncsSubdCdnm": "공적개발원조사업관리",
+      "learnModulSeq": "EDU20161201821",
+      "learnModulName": "공적개발원조사업 PDM 수립",
+      "learnModulText": "논리모형접근(LFA, Logical Framework Approach), PDM(Project Design Matrix), 목표, 목적, 산출, 활동, 투입, 가정, 위험, 지표, 객관적 검증 지표"
+    },
+    {
+      "ncsLclasCd": "01",
+      "ncsLclasCdnm": "사업관리",
+      "ncsMclasCd": "01",
+      "ncsMclasCdnm": "사업관리",
+      "ncsSclasCd": "01",
+      "ncsSclasCdnm": "프로젝트관리",
+      "ncsSubdCd": "01",
+      "ncsSubdCdnm": "공적개발원조사업관리",
+      "learnModulSeq": "EDU20161201823",
+      "learnModulName": "공적개발원조사업 총괄 운영 관리",
+      "learnModulText": "PDM, 사업 집행 계획, 제안 요청서, 입찰 및 계약, 성과 관리, 모니터링 및 평가, 사업 수행 실적 평가, 사업계획 변경, 사업 종료, 교훈 도출"
+    },
+    {
+      "ncsLclasCd": "01",
+      "ncsLclasCdnm": "사업관리",
+      "ncsMclasCd": "01",
+      "ncsMclasCdnm": "사업관리",
+      "ncsSclasCd": "01",
+      "ncsSclasCdnm": "프로젝트관리",
+      "ncsSubdCd": "01",
+      "ncsSubdCdnm": "공적개발원조사업관리",
+      "learnModulSeq": "EDU20161201830",
+      "learnModulName": "공적개발원조사업 프로젝트 집행",
+      "learnModulText": "국별 협력 전략(CPS: Country Partners Strategy), RoD, PDM, PMC, 초청 기관, 연수 기관, 지원 기관, 건축 기획, 건축 설계, 시공, 하자 보수, 건설 사업 관리(CM: Construction Management), 입찰, 계약, 개발도상국, 해외 건설, 기자재, 기자재 사양서, 협의 의사록(Record of Discussion), 선적, 통관, 입고 처리, 기술 협력, DEEP, KSP, 작업반(Working Group), 착수 보고회, 중간 보고회, 최종 보고회, 리스크 관리"
+    },
+    {
+      "ncsLclasCd": "01",
+      "ncsLclasCdnm": "사업관리",
+      "ncsMclasCd": "01",
+      "ncsMclasCdnm": "사업관리",
+      "ncsSclasCd": "01",
+      "ncsSclasCdnm": "프로젝트관리",
+      "ncsSubdCd": "01",
+      "ncsSubdCdnm": "공적개발원조사업관리",
+      "learnModulSeq": "EDU20161201834",
+      "learnModulName": "공적개발원조사업 성과 관리",
+      "learnModulText": "PDM, 성과기반관리(Results-based Management), 성과 지표, 기준값(기초선), 목푯값, 기초선 조사"
+    },
+    {
+      "ncsLclasCd": "01",
+      "ncsLclasCdnm": "사업관리",
+      "ncsMclasCd": "01",
+      "ncsMclasCdnm": "사업관리",
+      "ncsSclasCd": "01",
+      "ncsSclasCdnm": "프로젝트관리",
+      "ncsSubdCd": "01",
+      "ncsSubdCdnm": "공적개발원조사업관리",
+      "learnModulSeq": "EDU20161201836",
+      "learnModulName": "공적개발원조사업 평가 관리",
+      "learnModulText": "DAC 5대 평가 기준, 평가 매트릭스, 지표, 양적 조사 방법, 질적 조사 방법, 평가 결과 피드백"
+    },
+    {
+      "ncsLclasCd": "01",
+      "ncsLclasCdnm": "사업관리",
+      "ncsMclasCd": "01",
+      "ncsMclasCdnm": "사업관리",
+      "ncsSclasCd": "01",
+      "ncsSclasCdnm": "프로젝트관리",
+      "ncsSubdCd": "02",
+      "ncsSubdCdnm": "프로젝트관리",
+      "learnModulSeq": "EDU20161201839",
+      "learnModulName": "프로젝트 전략기획",
+      "learnModulText": "프로젝트 환경 요인, 프로젝트 계약 검토, 프로젝트 성공 기준, 프로젝트 거시 환경 분석, SWOT 분석, 경제론적 평가 모형, 선별적 평가 모형, 집합적 평가 모형, 핵심 성과 지표(KPI: key performance indicator), 프로젝트 성과 평가, 비즈니스 케이스(business case)"
+    },
+    {
+      "ncsLclasCd": "01",
+      "ncsLclasCdnm": "사업관리",
+      "ncsMclasCd": "01",
+      "ncsMclasCdnm": "사업관리",
+      "ncsSclasCd": "01",
+      "ncsSclasCdnm": "프로젝트관리",
+      "ncsSubdCd": "02",
+      "ncsSubdCdnm": "프로젝트관리",
+      "learnModulSeq": "EDU20161201842",
+      "learnModulName": "프로젝트 통합관리",
+      "learnModulText": "프로젝트 헌장, 비즈니스 케이스, 프로젝트 작업 명세서, 프로젝트관리계획서, 프로젝트 통합관리, 프로젝트 작업 실행, 프로젝트 작업 통제, 단계 종료, 프로젝트 종료, 경험 사례 수집"
+    },
+    {
+      "ncsLclasCd": "01",
+      "ncsLclasCdnm": "사업관리",
+      "ncsMclasCd": "01",
+      "ncsMclasCdnm": "사업관리",
+      "ncsSclasCd": "01",
+      "ncsSclasCdnm": "프로젝트관리",
+      "ncsSubdCd": "02",
+      "ncsSubdCdnm": "프로젝트관리",
+      "learnModulSeq": "EDU20161201847",
+      "learnModulName": "프로젝트 이해관계자 및 의사소통 관리",
+      "learnModulText": "이해관계자, 이해관계자 관리대장, 이해관계자 요구사항, 이해관계자 관리 계획, 이슈 기록부, 프로젝트관리계획서, 의사소통 요구사항, 의사소통 계획, 보고서, 정보 배포"
+    }
+  ],
+  "dataInfo": {
+    "code": "000",
+    "message": "정상",
+    "totalPage": 5,
+    "pageNo": "1",
+    "numOfRows": 10,
+    "totCnt": 46
+  }
+}
