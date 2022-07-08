@@ -102,7 +102,7 @@ function RoadmapDetail({ item }: any) {
       </Head>
       <div style={{ display: 'flex' }}>
         <NavigationBar />
-        <div>
+        <div style={{ flex: 3, marginTop: '85px' }}>
           <Header title="플랜테리어" />
           {levelList.map((item, idx) => (
             <>
@@ -141,6 +141,9 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: 540px 540px;
   gap: 48px;
+  @media screen and (max-width: 1100px) {
+    display: block;
+  }
 `;
 
 export default RoadmapDetail;

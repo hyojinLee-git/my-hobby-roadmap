@@ -41,6 +41,9 @@ const Container = styled.div`
   border-radius: 16px;
   padding: 8px;
   display: flex;
+  @media screen and (max-width: 1100px) {
+    margin-bottom: 48px;
+  }
 `;
 const Color = styled.div`
   width: 16px;

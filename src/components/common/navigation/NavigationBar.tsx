@@ -81,7 +81,6 @@ function NavigationBar() {
 const Nav = styled.nav`
   max-width: 220px;
   min-width: 180px;
-  border: 1px solid red;
   display: flex;
   flex-direction: column;
   align-items: center;
