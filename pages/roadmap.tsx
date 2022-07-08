@@ -1,12 +1,16 @@
 import { Footer } from '@/components/common/footer/Footer';
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import { onAuthStateChanged } from 'firebase/auth';
 
 import NavigationBar from '@/components/common/navigation/NavigationBar';
 import Header from '@/components/common/Header';
 import styles from '../styles/Home.module.css';
 import Roadmap from '@/containers/homePage/Roadmap';
 import CategoryButton from '@/components/common/CategoryButton';
+import { useEffect, useState } from 'react';
+import { authService } from '@/auth/firebaseConfig';
+import { loginUtil } from '@/utils/auth';
 
 const categoryList = [
   {
@@ -32,6 +36,10 @@ const categoryList = [
 ];
 
 const Home: NextPage = () => {
+  const [login, setLogin] = useState(false);
+  useEffect(() => {
+    loginUtil(setLogin);
+  }, []);
   return (
     <div className={styles.container}>
       <Head>
@@ -40,6 +48,7 @@ const Home: NextPage = () => {
       <NavigationBar />
       <div style={{ flex: 3, marginTop: '85px' }}>
         <Header title="로드맵 탐색하기" />
+        {login && <div>login true</div>}
         <div style={{ display: 'flex' }}>
           <div style={{ border: '1px solid blue' }}>
             {/* category */}

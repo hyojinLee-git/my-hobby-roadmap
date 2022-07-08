@@ -5,3 +5,8 @@ export const selectedMenu = atom<ReactNode>({
   key: 'selectedMenu',
   default: undefined,
 });
+
+export const loginState = atom<boolean>({
+  key: 'loginState',
+  default: false,
+});

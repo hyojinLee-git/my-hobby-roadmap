@@ -1,21 +1,38 @@
 import Header from '@/components/common/Header';
-import React from 'react';
+import { getUserInfo } from '@/utils/auth';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { signOut } from 'firebase/auth';
+import { authService } from '@/auth/firebaseConfig';
 
 function SettingScreen() {
+  const [userInfo, setUserInfo] = useState(
+    {} as { name: string; email: string },
+  );
+
+  const _logout = () => {
+    signOut(authService).then(() => {
+      console.log('sign out');
+    });
+  };
+
+  useEffect(() => {
+    getUserInfo(setUserInfo);
+  }, []);
+
   return (
     <Container>
       <Header title="환경설정" />
       <div>
         <SubTitle>내 프로필</SubTitle>
         <Profile>
-          <Circle>손</Circle>
-          <h3>손형준</h3>
+          <Circle>{userInfo.name?.split(' ')?.[1]}</Circle>
+          <h3>{userInfo.name}</h3>
         </Profile>
       </div>
       <div>
         <SubTitle>이메일</SubTitle>
-        <Text>shjmj187@naver.com</Text>
+        <Text>{userInfo.email}</Text>
       </div>
       <div>
         <SubTitle>개발자 문의사항</SubTitle>
@@ -31,14 +48,13 @@ function SettingScreen() {
       </div>
       <div>
         <SubTitle>로그아웃</SubTitle>
-        <button>로그아웃</button>
+        <button onClick={_logout}>로그아웃</button>
       </div>
     </Container>
   );
 }
 const Container = styled.div`
   flex: 3;
-  border: 1px solid red;
   margin-top: 85px;
 `;
 const SubTitle = styled.h2`
