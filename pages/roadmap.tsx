@@ -11,6 +11,7 @@ import CategoryButton from '@/components/common/CategoryButton';
 import { useEffect, useState } from 'react';
 import { authService } from '@/auth/firebaseConfig';
 import { loginUtil } from '@/utils/auth';
+import Link from 'next/link';
 
 const categoryList = [
   {
@@ -48,21 +49,7 @@ const Home: NextPage = () => {
       <NavigationBar />
       <div style={{ flex: 3, marginTop: '85px' }}>
         <Header title="로드맵 탐색하기" />
-        {login && <div>login true</div>}
         <div style={{ display: 'flex' }}>
-          <div style={{ border: '1px solid blue' }}>
-            {/* category */}
-            {categoryList.map((item, idx) => (
-              <>
-                <CategoryButton
-                  name={item.name}
-                  key={idx}
-                  selected={item.selected}
-                />
-                <div style={{ height: '32px' }}></div>
-              </>
-            ))}
-          </div>
           <Roadmap />
         </div>
         <Footer />
