@@ -1,6 +1,7 @@
 import { selectedMenu } from '@/recoil/global';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import {
   MdOutlineExplore,
   MdCheckBox,
@@ -49,14 +50,7 @@ const navMenu = [
 
 function NavigationBar() {
   const [menu, setMenu] = useRecoilState(selectedMenu);
-  const router = useRouter();
 
-  useEffect(() => {
-    setMenu(
-      navMenu.find((item) => item.link === `/${router.pathname.split('/')[1]}`)
-        ?.icon,
-    );
-  }, [router.pathname, setMenu]);
   return (
     <Nav>
       <div style={{ marginBottom: '16px' }}>
@@ -67,10 +61,11 @@ function NavigationBar() {
       <SelectedMenu>{menu}</SelectedMenu>
       <Ul>
         {navMenu.map((item, idx) => (
-          <Li key={idx}>
-            <Link href={item.link} onClick={() => setMenu(item.icon)}>
-              <div>{item.icon}</div>
-              <Title>{item.title}</Title>
+          <Li key={idx} onClick={() => setMenu(item.icon)}>
+            <Link passHref href={item.link}>
+              <StyledLink>
+                <div>{item.icon}</div>
+              </StyledLink>
             </Link>
           </Li>
         ))}
@@ -117,9 +112,9 @@ const Li = styled.li`
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid green;
+  /* border: 1px solid green; */
 `;
-const Link = styled.a`
+const StyledLink = styled.a`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -131,9 +126,6 @@ const Link = styled.a`
     background-color: #e8def8;
     opacity: 1;
   }
-`;
-const Title = styled.div`
-  display: none;
 `;
 
 export default NavigationBar;
