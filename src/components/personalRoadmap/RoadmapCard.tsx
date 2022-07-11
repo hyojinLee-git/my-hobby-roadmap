@@ -11,12 +11,11 @@ function RoadmapCard({ name, date, progress }: IProps) {
   return (
     <Container>
       <div style={{ width: 120, height: 120, background: '#F3F2EF' }}></div>
-      <div>
+      <div style={{ flex: 3, marginLeft: '16px', position: 'relative' }}>
         <Header>
           <Title>{name}</Title>
-          <div>{progress}%</div>
+          <Progress>{progress}%</Progress>
         </Header>
-
         <div>{date}</div>
         <Button>바로가기</Button>
       </div>
@@ -33,16 +32,24 @@ const Container = styled.div`
   border-radius: 16px;
   padding: 8px;
   display: flex;
+  @media screen and (max-width: 1100px) {
+    margin-bottom: 32px;
+  }
 `;
 
 const Header = styled.div`
-  border: 1px solid;
+  /* border: 1px solid; */
   display: flex;
   justify-content: space-between;
 `;
 
 const Title = styled.h2`
-  margin: 7px 0;
+  margin: 0;
+`;
+
+const Progress = styled.div`
+  font-weight: 700;
+  font-size: 20px;
 `;
 
 const Button = styled.button`
@@ -52,5 +59,8 @@ const Button = styled.button`
   height: 32px;
   width: 104px;
   border-radius: 10px;
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
 `;
 export default RoadmapCard;
