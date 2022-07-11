@@ -37,10 +37,6 @@ const categoryList = [
 ];
 
 const Home: NextPage = () => {
-  const [login, setLogin] = useState(false);
-  useEffect(() => {
-    loginUtil(setLogin);
-  }, []);
   return (
     <div className={styles.container}>
       <Head>

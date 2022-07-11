@@ -9,11 +9,7 @@ import { useRecoilValue } from 'recoil';
 import styles from '../styles/Home.module.css';
 
 function Setting() {
-  const [login, setLogin] = useState(false);
-
-  useEffect(() => {
-    loginUtil(setLogin);
-  }, []);
+  const login = useRecoilValue(loginState);
 
   const _checkLogin = () => {
     if (login) return <SettingScreen />;

@@ -1,13 +1,18 @@
 import { authService } from '@/auth/firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
 
-export const loginUtil = (setState: Function) => {
+export const loginUtil = (setLoginState: Function, setUserInfo: Function) => {
   onAuthStateChanged(authService, (user) => {
     if (user) {
-      console.log('login?', user.uid);
-      setState(true);
+      setLoginState(true);
+      setUserInfo((prev: any) => ({
+        ...prev,
+        name: user.displayName,
+        email: user.email,
+        uid: 'M8mYC1eUs6RqEUrxTj7mARW3dK72',
+      }));
     } else {
-      setState(false);
+      setLoginState(false);
     }
   });
 };
@@ -21,6 +26,16 @@ export const getUserInfo = (setState: Function) => {
       });
     } else {
       return {};
+    }
+  });
+};
+
+export const getUid = (setState: Function) => {
+  onAuthStateChanged(authService, (user) => {
+    if (user) {
+      setState(user.uid);
+    } else {
+      return;
     }
   });
 };
