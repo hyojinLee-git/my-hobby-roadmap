@@ -1,15 +1,33 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 interface IProps {
   date: string;
   written: boolean;
   selected: boolean;
+  clickCount: number;
+  onClickDate: Function;
 }
 
-function DatePicker({ date, written, selected }: IProps) {
+function DateItem({
+  date,
+  written,
+  selected,
+  clickCount,
+  onClickDate,
+}: IProps) {
+  const sliderRef: any = useRef();
+  useEffect(() => {
+    sliderRef.current.style.transition = 'all 0.5s ease-in-out';
+    sliderRef.current.style.transform = `translateX(${-70 * clickCount}px)`;
+  }, [clickCount]);
+
   return (
-    <Container selected={selected}>
+    <Container
+      onClick={(e) => onClickDate(e.currentTarget.innerText)}
+      selected={selected}
+      ref={sliderRef}
+    >
       <div>{date}</div>
       <Circle written={written} />
     </Container>
@@ -31,6 +49,7 @@ const Container = styled.div`
   }
   @media screen and (max-width: 1100px) {
     width: 70px;
+    min-width: 70px;
   }
 `;
 const Circle = styled.div`
@@ -42,4 +61,4 @@ const Circle = styled.div`
   margin-bottom: 4px;
 `;
 
-export default DatePicker;
+export default DateItem;
