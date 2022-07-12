@@ -1,7 +1,6 @@
 import NavigationBar from '@/components/common/navigation/NavigationBar';
 import SettingScreen from '@/containers/setting';
 import { loginState } from '@/recoil/global';
-import { loginUtil } from '@/utils/auth';
 import Head from 'next/head';
 import Router from 'next/router';
 import React, { useEffect, useState } from 'react';
@@ -13,7 +12,7 @@ function Setting() {
 
   const _checkLogin = () => {
     if (login) return <SettingScreen />;
-    // else Router.push('/login');
+    else Router.push('/login');
   };
 
   return (
