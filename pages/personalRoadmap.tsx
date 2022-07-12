@@ -4,8 +4,9 @@ import NavigationBar from '@/components/common/navigation/NavigationBar';
 import RoadmapCard from '@/components/personalRoadmap/RoadmapCard';
 import CategoryNRoadmap from '@/containers/personalRoadmap/CategoryNRoadmap';
 import { userInformation } from '@/recoil/global';
+import axios from 'axios';
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import styles from '../styles/Home.module.css';
@@ -68,10 +69,24 @@ const roadmapList2 = [
 
 function PersonalRoadmap() {
   const userInfo = useRecoilValue(userInformation);
+  const [roadmapData, setRoadmapData] = useState<any>();
 
-  // const getPersonalRoadmap=()=>{
-  //   const url=`${process.env.NEXT_PUBLIC_DATABASE_URL}/Users/M8mYC1eUs6RqEUrxTj7mARW3dK72/`
-  // }
+  const getPersonalRoadmap = async () => {
+    const url = `${process.env.NEXT_PUBLIC_DATABASE_URL}/Users/${userInfo.uid}/myClass.json`;
+    const { data } = await axios.get(url);
+
+    if (data)
+      setRoadmapData(
+        Object.entries(data).map((item: any) => ({
+          ...item[1],
+          category: item[0].split(' ')[0],
+        })),
+      );
+  };
+
+  useEffect(() => {
+    getPersonalRoadmap();
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -91,7 +106,7 @@ function PersonalRoadmap() {
           </Link>
         </div>
         <div>
-          {[roadmapList1, roadmapList2].map((item, index) => (
+          {roadmapData?.map((item: any, index: number) => (
             <CategoryNRoadmap key={index} roadmapList={item} />
           ))}
         </div>

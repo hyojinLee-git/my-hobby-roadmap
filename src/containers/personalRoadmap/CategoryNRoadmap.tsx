@@ -7,16 +7,18 @@ interface IProps {
 }
 
 function CategoryNRoadmap({ roadmapList }: IProps) {
+  console.log('!', roadmapList);
   return (
     <div>
       <CategoryTitle>카테고리</CategoryTitle>
       <RoadmapContainer>
-        {roadmapList.map((item: any) => (
+        {Object.values(roadmapList.modules).map((item: any) => (
           <RoadmapCard
             key={item.name}
-            name={item.name}
+            name={item}
             date={item.date}
             progress={item.progress}
+            category={roadmapList.category}
           />
         ))}
       </RoadmapContainer>
