@@ -31,11 +31,6 @@ const navMenu = [
     title: '로드맵',
   },
   {
-    icon: <MdVideogameAsset size={24} />,
-    link: '/',
-    title: '게임',
-  },
-  {
     icon: <MdOutlineNotificationsNone size={24} />,
     link: '/alarm',
     title: '알림',
