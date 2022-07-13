@@ -7,6 +7,7 @@ import Router from 'next/router';
 
 const logo = require('@/asset/logo.png');
 const title = require('@/asset/IZEL.png');
+const googleLogin = require('@/asset/google.png');
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -36,8 +37,16 @@ function Login() {
 
   return (
     <Container>
-      <div>
-        <Image src={logo} alt="logo" />
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          width: '150px',
+          justifyContent: 'space-between',
+          marginBottom: '50px',
+        }}
+      >
+        <Image src={logo} alt="logo" width={57} height={81} />
         <Image src={title} alt="title" />
       </div>
       <Input
@@ -54,7 +63,10 @@ function Login() {
       />
       <LoginButton>이메일로 로그인하기</LoginButton>
       <RegistButton>회원가입 하기</RegistButton>
-      <button onClick={_login}>구글로 로그인</button>
+      <GoogleLoginButton onClick={_login}>
+        <Image src={googleLogin} alt={'google'} width={25} height={31} />
+        <span style={{ paddingRight: '100px' }}>구글로 로그인</span>
+      </GoogleLoginButton>
     </Container>
   );
 }
@@ -109,6 +121,21 @@ const RegistButton = styled.button`
   color: #9ca2a6;
   font-weight: 600;
   font-size: 20px;
+`;
+
+const GoogleLoginButton = styled.button`
+  background: #ffffff;
+  border: 1px solid #eaeaea;
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  width: 370px;
+  height: 53px;
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 `;
 
 export default Login;
