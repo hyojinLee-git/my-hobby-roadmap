@@ -1,7 +1,11 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import {
+  signInWithPopup,
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
 import { authService } from '@/auth/firebaseConfig';
 import Router from 'next/router';
 
@@ -12,9 +16,10 @@ const googleLogin = require('@/asset/google.png');
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [err, setErr] = useState(false);
   const provider = new GoogleAuthProvider();
 
-  const _login = () => {
+  const _googleLogin = () => {
     signInWithPopup(authService, provider)
       .then((result) => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -32,6 +37,19 @@ function Login() {
         //   The AuthCredential type that was used.
         const credential = GoogleAuthProvider.credentialFromError(error);
         //   ...
+      });
+  };
+
+  const _emailLogin = () => {
+    signInWithEmailAndPassword(authService, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+        Router.push('/');
+      })
+      .catch((e) => {
+        console.log(e);
+        setErr(true);
       });
   };
 
@@ -56,14 +74,16 @@ function Login() {
         upside={true}
       />
       <Input
+        type="password"
         placeholder="비밀번호"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         upside={false}
       />
-      <LoginButton>이메일로 로그인하기</LoginButton>
+      {err && <ErrorMessage>이메일 혹은 비밀번호를 확인해주세요</ErrorMessage>}
+      <LoginButton onClick={_emailLogin}>이메일로 로그인하기</LoginButton>
       <RegistButton>회원가입 하기</RegistButton>
-      <GoogleLoginButton onClick={_login}>
+      <GoogleLoginButton onClick={_googleLogin}>
         <Image src={googleLogin} alt={'google'} width={25} height={31} />
         <span style={{ paddingRight: '100px' }}>구글로 로그인</span>
       </GoogleLoginButton>
@@ -136,6 +156,11 @@ const GoogleLoginButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: space-around;
+`;
+
+const ErrorMessage = styled.div`
+  color: red;
+  margin-top: 10px;
 `;
 
 export default Login;
