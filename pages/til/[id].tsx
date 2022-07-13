@@ -1,8 +1,6 @@
 import Header from '@/components/common/Header';
 import NavigationBar from '@/components/common/navigation/NavigationBar';
 import Content from '@/containers/TIL/Content';
-import DatePicker from '@/containers/TIL/DatePicker';
-import Editor from '@/containers/TIL/Editor';
 import { tilContent } from '@/recoil/til';
 import React, { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
