@@ -26,8 +26,12 @@ function SettingScreen() {
       <div>
         <SubTitle>내 프로필</SubTitle>
         <Profile>
-          <Circle>{userInfo.name?.split(' ')?.[1]}</Circle>
-          <h3>{userInfo.name}</h3>
+          <Circle>
+            {userInfo.name
+              ? userInfo.name?.split(' ')?.[1]
+              : userInfo.email.split('@')[0]}
+          </Circle>
+          <h3>{userInfo.name ? userInfo.name : userInfo.email}</h3>
         </Profile>
       </div>
       <div>

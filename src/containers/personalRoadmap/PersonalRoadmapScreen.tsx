@@ -42,7 +42,9 @@ function PersonalRoadmapScreen() {
 
   return (
     <div style={{ flex: 3, marginTop: '85px' }}>
-      <Header title={`${userInfo.name}님의 로드맵`} />
+      <Header
+        title={`${userInfo.name ? userInfo.name : userInfo.email}님의 로드맵`}
+      />
       <div style={{ display: 'flex', marginBottom: '85px' }}>
         {categoryList.map((item, idx) => (
           <CategoryButton name={item.name} key={idx} selected={item.selected} />
