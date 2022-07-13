@@ -1,6 +1,6 @@
 import { selectedMenu } from '@/recoil/global';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { Router, useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import {
   MdOutlineExplore,
@@ -45,6 +45,13 @@ const navMenu = [
 
 function NavigationBar() {
   const [menu, setMenu] = useRecoilState(selectedMenu);
+  const router = useRouter();
+  useEffect(() => {
+    if (!menu) {
+      const { pathname } = router;
+      setMenu(navMenu.find((item) => item.link === pathname)?.icon);
+    }
+  }, []);
 
   return (
     <Nav>
