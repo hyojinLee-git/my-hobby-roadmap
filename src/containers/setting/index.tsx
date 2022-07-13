@@ -29,7 +29,7 @@ function SettingScreen() {
           <Circle>
             {userInfo.name
               ? userInfo.name?.split(' ')?.[1]
-              : userInfo.email.split('@')[0]}
+              : userInfo.email?.split('@')?.[0]}
           </Circle>
           <h3>{userInfo.name ? userInfo.name : userInfo.email}</h3>
         </Profile>
