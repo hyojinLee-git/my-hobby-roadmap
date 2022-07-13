@@ -15,7 +15,6 @@ function TodayILearn() {
   const [dateList, setDateList] = useState<any>();
   const userInfo = useRecoilValue(userInformation);
   const [til, setTil] = useState<any>();
-  const [todayContent, setTodayContent] = useState();
   const [todayTil, setTodayTil] = useState<any>();
   const [edit, setEdit] = useState(false);
   const [today, setToday] = useState(

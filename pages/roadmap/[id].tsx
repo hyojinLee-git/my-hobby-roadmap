@@ -1,13 +1,15 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 
+import styles from '../../styles/Home.module.css';
 import Header from '@/components/common/Header';
 import LevelButton from '@/components/common/LevelButton';
 import NavigationBar from '@/components/common/navigation/NavigationBar';
 import CourseCard from '@/components/roadmap/CourseCard';
 import { statusCode } from '@/model/course';
-import styled from 'styled-components';
+import axios from 'axios';
 
 const courseList = [
   {
@@ -89,22 +91,30 @@ const levelList = [
 
 function RoadmapDetail({ item }: any) {
   console.log(item);
+  const [courseData, setCourseData] = useState<any>();
+  const getCourseData = async () => {
+    const data = await axios.get('http://localhost:4000/api/roadmap');
+    console.log('localserver', data);
+  };
+  useEffect(() => {
+    getCourseData();
+  }, []);
   //여기부터
   const router = useRouter();
   const { id } = router.query;
   //여기까지 필요없어짐
   return (
-    <>
+    <div className={styles.container}>
       {/* 여기를 통해서 seo구현 */}
       <Head>
         <title>로드맵 상세페이지입니다</title>
         <meta name="roadmap description" content="description"></meta>
       </Head>
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex', width: '100%' }}>
         <NavigationBar />
-        <div style={{ flex: 3, marginTop: '85px' }}>
-          <Header title="플랜테리어" />
-          {levelList.map((item, idx) => (
+        <div style={{ flex: 3, marginTop: '85px', width: '90%' }}>
+          <Header title={item} />
+          {/* {levelList.map((item, idx) => (
             <>
               <LevelButton
                 key={idx}
@@ -119,12 +129,11 @@ function RoadmapDetail({ item }: any) {
                 }}
               ></div>
             </>
-          ))}
+          ))} */}
           <Container>
             {courseList.map((item, idx) => (
               <CourseCard
                 title={item.title}
-                detail={item.detail}
                 exp={item.exp}
                 status={item.status}
                 key={idx}
@@ -133,7 +142,7 @@ function RoadmapDetail({ item }: any) {
           </Container>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
@@ -151,7 +160,7 @@ export default RoadmapDetail;
 
 export function getServerSideProps(context: any) {
   const id = context.params.id;
-  const api = '';
+  // const api = axios.get('http://localhost:4000/api/roadmap');
   const res = { data: '??' };
   const data = res.data;
 

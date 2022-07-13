@@ -5,7 +5,7 @@ const GlobalStyle = createGlobalStyle`
     ${reset}
     * {
     box-sizing: border-box;
-    font-size: 16pxx;
+    font-size: 16px;
   }
   body{
     font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;

@@ -1,4 +1,5 @@
 .container {
   display: flex;
   border: 1px solid pink;
+  padding-right: 5%;
 }

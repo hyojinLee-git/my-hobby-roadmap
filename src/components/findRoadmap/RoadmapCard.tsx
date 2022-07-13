@@ -9,14 +9,14 @@ interface IProps {
 function RoadmapCard({ title }: IProps) {
   return (
     <Container>
-      <TitleBox>
+      {/* <TitleBox>
         <Title>{title}</Title>
         <Button>
           <MdSend size={24} />
         </Button>
       </TitleBox>
       <div>로드맵 상세설명</div>
-      {/* <image src={} alt="thumbnail"/> */}
+      <image src={} alt="thumbnail"/> */}
     </Container>
   );
 }

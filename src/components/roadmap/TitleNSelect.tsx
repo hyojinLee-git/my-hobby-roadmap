@@ -18,8 +18,8 @@ function TitleNSelect({ title, selectList, isLast, value, setValue }: IProps) {
       <Title>{title}</Title>
       <SelectList isLast={isLast}>
         {isLast
-          ? selectList?.map((item, index) => (
-              <Link passHref href={`/roadmap/${index}`} key={item}>
+          ? selectList?.map((item) => (
+              <Link passHref href={`/roadmap/${item}`} key={item}>
                 <SelectLink selected={item === value}>{item}</SelectLink>
               </Link>
             ))

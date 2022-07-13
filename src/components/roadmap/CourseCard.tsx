@@ -4,11 +4,10 @@ import styled from 'styled-components';
 interface IProps {
   status: string;
   title: string;
-  detail: string;
   exp: number;
 }
 
-function CourseCard({ status, title, detail, exp }: IProps) {
+function CourseCard({ status, title, exp }: IProps) {
   const _setColor = () => {
     switch (status) {
       case 'startable':
@@ -26,7 +25,6 @@ function CourseCard({ status, title, detail, exp }: IProps) {
       <Color color={_setColor()} />
       <div>
         <Title>{title}</Title>
-        <div>{detail}</div>
         <Button>{exp}XP</Button>
       </div>
     </Container>

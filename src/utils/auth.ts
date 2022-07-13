@@ -9,7 +9,7 @@ export const loginUtil = (setLoginState: Function, setUserInfo: Function) => {
         ...prev,
         name: user.displayName,
         email: user.email,
-        uid: 'M8mYC1eUs6RqEUrxTj7mARW3dK72',
+        uid: 'cNmyIYLO1NMxYGjyhyaHW4hbyyb2',
       }));
     } else {
       setLoginState(false);
