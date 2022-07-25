@@ -59,7 +59,7 @@ const Title = styled.h2`
 
 const SelectList = styled.div`
   height: 570px;
-  overflow: scroll;
+  overflow: auto;
   border-left: 1px solid #cbcbcb;
   border-bottom: 1px solid #cbcbcb;
   border-right: ${(props: { isLast: boolean | undefined }) =>
