@@ -1,15 +1,13 @@
 import Header from '@/components/common/Header';
 import TilList from '@/components/TIL/TilList';
 import { userInformation } from '@/recoil/global';
-import { getUid, loginUtil } from '@/utils/auth';
 import axios from 'axios';
 import React, { useEffect, useRef, useState } from 'react';
-import { MdChevronLeft, MdChevronRight } from 'react-icons/md';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
-import Content from './Content';
 import DatePicker from './DatePicker';
 import Editor from './Editor';
+import { getDatabase, ref, child, push, update } from 'firebase/database';
 
 function TodayILearn() {
   const [dateList, setDateList] = useState<any>();
@@ -17,6 +15,8 @@ function TodayILearn() {
   const [til, setTil] = useState<any>();
   const [todayTil, setTodayTil] = useState<any>();
   const [edit, setEdit] = useState(false);
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
   const [today, setToday] = useState(
     `${new Date().getMonth() + 1}/${new Date().getDate()}`,
   );
@@ -36,7 +36,6 @@ function TodayILearn() {
   };
 
   const getTodayContent = () => {
-    console.log('!', til);
     const todayTil = til?.filter((item: any) => {
       const year = new Date().getFullYear();
       const [month, date] = today.split('/');
@@ -48,7 +47,6 @@ function TodayILearn() {
         }`
       );
     });
-    // console.log(todayTilList);
     setTodayTil(todayTil);
   };
 
@@ -60,6 +58,29 @@ function TodayILearn() {
       (item: any) => item.uid === userInfo.uid,
     );
     setTil(tilData);
+  };
+
+  const postTil = async () => {
+    const db = getDatabase();
+    const newPostKey = push(child(ref(db), 'posts')).key;
+    const postData = {
+      content,
+      date: `${new Date().getFullYear()}-${
+        new Date().getMonth() + 1 > 10
+          ? new Date().getMonth() + 1
+          : `0${new Date().getMonth() + 1}`
+      }-${new Date().getDate()}`,
+      moduleName: '',
+      moduleDesc: '',
+      modulePath: '02 01 01 01',
+      tilId: '',
+      uid: userInfo.uid,
+    };
+    const updates: { [key: string]: Object } = {};
+    updates[`/TIL/${newPostKey}`] = postData;
+    console.log(postData);
+    update(ref(db), updates);
+    setEdit(false);
   };
 
   useEffect(() => {
@@ -96,8 +117,13 @@ function TodayILearn() {
           </TilBox>
         ) : (
           <TilBox>
-            <Button onClick={() => setEdit(false)}>등록하기</Button>
-            <Editor />
+            <Button onClick={postTil}>등록하기</Button>
+            <Editor
+              title={title}
+              setTitle={setTitle}
+              content={content}
+              setContent={setContent}
+            />
           </TilBox>
         )}
       </div>
