@@ -8,12 +8,13 @@ interface IProps {
   moduleName: string;
   link: number;
   content: string;
+  date: string;
 }
-function TilList({ moduleName, link, content }: IProps) {
+function TilList({ moduleName, link, content, date }: IProps) {
   const setTilContent = useSetRecoilState(tilContent);
   return (
     <Link passHref href={`/til/${link}`}>
-      <StyledLink onClick={() => setTilContent(content)}>
+      <StyledLink onClick={() => setTilContent({ moduleName, content, date })}>
         {moduleName}
       </StyledLink>
     </Link>

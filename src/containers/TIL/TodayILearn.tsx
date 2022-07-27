@@ -90,6 +90,7 @@ function TodayILearn() {
                 key={item.moduleName}
                 moduleName={item.moduleName}
                 content={item.content}
+                date={item.date}
               />
             ))}
           </TilBox>
