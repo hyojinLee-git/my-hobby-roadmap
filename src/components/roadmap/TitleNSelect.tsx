@@ -4,32 +4,31 @@ import styled from 'styled-components';
 
 interface IProps {
   title: string;
-  selectList?: string[];
+  selectList?: { name: string; category: string }[];
   isLast?: boolean;
-  value?: string;
+  value: { name: string; category: string };
   setValue: Function;
 }
 function TitleNSelect({ title, selectList, isLast, value, setValue }: IProps) {
-  const _onClick = (e: any) => {
-    setValue(e.target.innerText);
-  };
   return (
     <Container>
       <Title>{title}</Title>
       <SelectList isLast={isLast}>
         {isLast
           ? selectList?.map((item) => (
-              <Link passHref href={`/roadmap/${item}`} key={item}>
-                <SelectLink selected={item === value}>{item}</SelectLink>
+              <Link passHref href={`/roadmap/${item.name}`} key={item.name}>
+                <SelectLink selected={item.name === value.name}>
+                  {item.name}
+                </SelectLink>
               </Link>
             ))
           : selectList?.map((item) => (
               <SelectButton
-                selected={item === value}
-                onClick={_onClick}
-                key={item}
+                selected={item.name === value.name}
+                onClick={() => setValue(item)}
+                key={item.name}
               >
-                {item}
+                {item.name}
               </SelectButton>
             ))}
       </SelectList>

@@ -2,27 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface IProps {
-  status: string;
   title: string;
   exp: number;
+  index: number;
 }
 
-function CourseCard({ status, title, exp }: IProps) {
-  const _setColor = () => {
-    switch (status) {
-      case 'startable':
-        return '#FFA06B';
-      case 'proceeding':
-        return '#FFFB9F';
-      case 'complete':
-        return '#87dcb4';
-      default:
-        return '#FFA06B';
-    }
-  };
+function CourseCard({ index, title, exp }: IProps) {
   return (
     <Container>
-      <Color color={_setColor()} />
+      <Color color={index % 2 === 0 ? '#5970D2' : '#ACBCFF'} />
       <div>
         <Title>{title}</Title>
         <Button>{exp}XP</Button>
@@ -39,6 +27,7 @@ const Container = styled.div`
   border-radius: 16px;
   padding: 8px;
   display: flex;
+  position: relative;
   @media screen and (max-width: 1100px) {
     margin-bottom: 48px;
   }
@@ -56,9 +45,12 @@ const Title = styled.h2`
 const Button = styled.button`
   width: 85px;
   height: 30px;
-  background: #6750a4;
+  background: #5970d2;
   border-radius: 10px;
   color: #fff;
   border: none;
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
 `;
 export default CourseCard;
