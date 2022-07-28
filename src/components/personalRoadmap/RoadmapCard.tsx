@@ -37,7 +37,6 @@ const icons: { [key: string]: any } = {
 };
 
 function RoadmapCard({ name, date, progress, category }: IProps) {
-  console.log('ca', category);
   return (
     <Container>
       <Image src={icons[category]} alt={category} width={120} height={120} />

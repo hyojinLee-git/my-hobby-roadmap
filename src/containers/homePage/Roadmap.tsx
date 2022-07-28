@@ -19,6 +19,7 @@ function Roadmap() {
 
   const _getDataList = (data: any, order: string, name?: string) => {
     let dataList;
+    let arr;
     switch (order) {
       case 'second':
         dataList = data.map((item: any) =>
@@ -27,7 +28,8 @@ function Roadmap() {
             category: item.ncsMclasCd,
           }),
         );
-        return [...new Set(dataList)].map((item) => JSON.parse(item));
+        arr = new Set(dataList);
+        return Array.from(arr).map((item: any) => JSON.parse(item));
       case 'third':
         dataList = data
           .filter((item: any) => item.ncsMclasCdnm === name)
@@ -37,7 +39,8 @@ function Roadmap() {
               category: item.ncsSclasCd,
             }),
           );
-        return [...new Set(dataList)].map((item) => JSON.parse(item));
+        arr = new Set(dataList);
+        return Array.from(arr).map((item: any) => JSON.parse(item));
       case 'forth':
         dataList = data
           .filter((item: any) => item.ncsSclasCdnm === name)
@@ -47,7 +50,8 @@ function Roadmap() {
               category: item.ncsSubdCd,
             }),
           );
-        return [...new Set(dataList)].map((item) => JSON.parse(item));
+        arr = new Set(dataList);
+        return Array.from(arr).map((item: any) => JSON.parse(item));
     }
   };
 
@@ -55,7 +59,6 @@ function Roadmap() {
     const { data } = await axios.get(
       `http://localhost:4000/api/roadmap/${category}`,
     );
-    console.log('localserver', data.data.length, data.data);
     setData(data.data);
     const secondaryData = _getDataList(data.data, 'second');
     setSecondaryData(secondaryData);
@@ -84,7 +87,6 @@ function Roadmap() {
     const quaternaryData = _getDataList(data, 'forth', tertiary.name);
     setQuaternaryData(quaternaryData);
   }, [tertiary]);
-  console.log(quaternaryData);
   return (
     <Container>
       <TitleNSelect
