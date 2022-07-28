@@ -4,6 +4,7 @@ import Content from '@/containers/TIL/Content';
 import { tilContent } from '@/recoil/til';
 import React, { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
+import styled from 'styled-components';
 import styles from '../../styles/Home.module.css';
 
 function TilDetail() {
@@ -43,13 +44,21 @@ function TilDetail() {
           /> */}
           <div style={{ marginTop: '85px' }} />
           <div style={{ width: '90%' }}>
-            <div>학습모듈명</div>
-            <Content title="제목" content={todayContent} />
+            <DateText>{todayContent.date}</DateText>
+            <Content
+              title={todayContent.moduleName}
+              content={todayContent.content}
+            />
           </div>
         </div>
       </div>
     </div>
   );
 }
+
+const DateText = styled.div`
+  font-size: 24px;
+  margin-bottom: 15px;
+`;
 
 export default TilDetail;

@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-function Editor() {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+interface IProps {
+  title: string;
+  setTitle: Function;
+  content: string;
+  setContent: Function;
+}
 
+function Editor({ title, setTitle, content, setContent }: IProps) {
   const _onChangeTitle = (v: string) => {
     setTitle(v);
   };
