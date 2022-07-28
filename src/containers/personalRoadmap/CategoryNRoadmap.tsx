@@ -9,6 +9,7 @@ interface IProps {
 
 function CategoryNRoadmap({ roadmapList }: IProps) {
   const [categoryTitle, setCategoryTitle] = useState('' as any);
+  const [progress, setProgress] = useState([] as any);
   const _getData = async (category: string) => {
     const { data } = await axios.get(
       `http://localhost:4000/api/roadmap/${category}`,
@@ -18,9 +19,9 @@ function CategoryNRoadmap({ roadmapList }: IProps) {
         `${item.ncsLclasCd} ${item.ncsMclasCd} ${item.ncsSclasCd} ${item.ncsSubdCd}` ===
         roadmapList.key,
     );
-    console.log(data.data);
-    console.log(roadmapList.key, ncsSubdCdnm);
+
     setCategoryTitle(ncsSubdCdnm);
+    setProgress([]);
   };
   useEffect(() => {
     _getData(roadmapList.category);
