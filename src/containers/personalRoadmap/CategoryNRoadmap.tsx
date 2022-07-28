@@ -1,3 +1,4 @@
+import { categoryNRownum } from '@/asset/roadmapData';
 import RoadmapCard from '@/components/personalRoadmap/RoadmapCard';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
@@ -10,8 +11,14 @@ interface IProps {
 function CategoryNRoadmap({ roadmapList }: IProps) {
   const [categoryTitle, setCategoryTitle] = useState('' as any);
   const _getData = async (category: string) => {
+    const url = `http://apis.data.go.kr/B490007/ncsStudyModule/openapi21?serviceKey=${decodeURI(
+      '8J6CPUUandk0YLso7B5y/z0I67lSDrVpiQhJcmagUHOlDHLTkuQA84FEMIt3Ii//T2DDh/4lOxwMFhPJzFA6Mg==',
+    )}&numOfRows=${
+      categoryNRownum[category]
+    }&pageNo=1&returnType=json&ncsLclasCd=${category}`;
     const { data } = await axios.get(
-      `http://localhost:4000/api/roadmap/${category}`,
+      // `http://localhost:4000/api/roadmap/${category}`,
+      url,
     );
     const { ncsSubdCdnm } = data.data?.find(
       (item: any) =>
