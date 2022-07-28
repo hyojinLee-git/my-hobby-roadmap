@@ -36,7 +36,6 @@ function TodayILearn() {
   };
 
   const getTodayContent = () => {
-    console.log('!', til);
     const todayTil = til?.filter((item: any) => {
       const year = new Date().getFullYear();
       const [month, date] = today.split('/');
@@ -86,7 +85,7 @@ function TodayILearn() {
             <Button onClick={() => setEdit(true)}>추가하기</Button>
             {todayTil?.map((item: any, index: number) => (
               <TilList
-                link={index + 1}
+                link={item.moduleName}
                 key={item.moduleName}
                 moduleName={item.moduleName}
                 content={item.content}

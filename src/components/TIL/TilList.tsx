@@ -6,11 +6,12 @@ import styled from 'styled-components';
 
 interface IProps {
   moduleName: string;
-  link: number;
+  link: string;
   content: string;
 }
 function TilList({ moduleName, link, content }: IProps) {
   const setTilContent = useSetRecoilState(tilContent);
+  console.log(link);
   return (
     <Link passHref href={`/til/${link}`}>
       <StyledLink onClick={() => setTilContent(content)}>
