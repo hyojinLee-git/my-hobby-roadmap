@@ -5,100 +5,25 @@ import styled from 'styled-components';
 
 import styles from '../../styles/Home.module.css';
 import Header from '@/components/common/Header';
-import LevelButton from '@/components/common/LevelButton';
 import NavigationBar from '@/components/common/navigation/NavigationBar';
 import CourseCard from '@/components/roadmap/CourseCard';
-import { statusCode } from '@/model/course';
-import axios from 'axios';
-
-const courseList = [
-  {
-    title: '플랜테리어 기본 정보 알기',
-    detail: '플랜테리어 계획 세우기',
-    exp: 50,
-    status: statusCode.complete,
-  },
-  {
-    title: '플랜테리어 기본 정보 알기',
-    exp: 50,
-    detail: '플랜테리어 계획 세우기',
-    status: statusCode.complete,
-  },
-  {
-    title: '플랜테리어 기본 정보 알기',
-    detail: '플랜테리어 계획 세우기',
-    exp: 50,
-    status: statusCode.complete,
-  },
-  {
-    title: '플랜테리어 기본 정보 알기',
-    detail: '플랜테리어 계획 세우기',
-    exp: 50,
-    status: statusCode.complete,
-  },
-  {
-    title: '플랜테리어 기본 정보 알기',
-    detail: '플랜테리어 계획 세우기',
-    exp: 50,
-    status: statusCode.proceeding,
-  },
-  {
-    title: '플랜테리어 기본 정보 알기',
-    detail: '플랜테리어 계획 세우기',
-    exp: 50,
-    status: statusCode.startable,
-  },
-  {
-    title: '플랜테리어 기본 정보 알기',
-    detail: '플랜테리어 계획 세우기',
-    exp: 50,
-    status: statusCode.startable,
-  },
-  {
-    title: '플랜테리어 기본 정보 알기',
-    detail: '플랜테리어 계획 세우기',
-    exp: 50,
-    status: statusCode.startable,
-  },
-];
-const levelList = [
-  {
-    title: '레벨1',
-    selected: true,
-    lock: false,
-  },
-  {
-    title: '레벨2',
-    selected: false,
-    lock: false,
-  },
-  {
-    title: '레벨3',
-    selected: false,
-    lock: false,
-  },
-  {
-    title: '레벨4',
-    selected: false,
-    lock: true,
-  },
-  {
-    title: '레벨5',
-    selected: false,
-    lock: true,
-  },
-];
+import { useRecoilValue } from 'recoil';
+import { roadmapData } from '@/recoil/roadmap';
 
 function RoadmapDetail({ item }: any) {
-  console.log(item);
-  const [courseData, setCourseData] = useState<any>();
-  const getCourseData = async () => {
-    const data = await axios.get('http://localhost:4000/api/roadmap');
-    console.log('localserver', data);
+  const [courseData, setCourseData] = useState([] as any);
+  const data = useRecoilValue(roadmapData);
+
+  const _getData = () => {
+    console.log(data);
+    const filterData = data.filter((i: any) => i.ncsSubdCdnm === item);
+    setCourseData(filterData);
   };
   useEffect(() => {
-    getCourseData();
+    // data filtering
+    _getData();
   }, []);
+
   //여기부터
   const router = useRouter();
   const { id } = router.query;
@@ -114,29 +39,18 @@ function RoadmapDetail({ item }: any) {
         <NavigationBar />
         <div style={{ flex: 3, marginTop: '85px', width: '90%' }}>
           <Header title={item} />
-          {/* {levelList.map((item, idx) => (
-            <>
-              <LevelButton
-                key={idx}
-                lock={item.lock}
-                selected={item.selected}
-                title={item.title}
-              />
-              <div
-                style={{
-                  width: '32px',
-                  display: 'inline',
-                }}
-              ></div>
-            </>
-          ))} */}
+          <div
+            style={{ fontSize: '20px', marginBottom: '10px', color: '#636363' }}
+          >
+            학습모듈 {courseData.length}개
+          </div>
           <Container>
-            {courseList.map((item, idx) => (
+            {courseData.map((item: any, idx: number) => (
               <CourseCard
-                title={item.title}
-                exp={item.exp}
-                status={item.status}
-                key={idx}
+                title={item.learnModulName}
+                exp={50}
+                key={item.learnModulName}
+                index={idx}
               />
             ))}
           </Container>
@@ -160,7 +74,6 @@ export default RoadmapDetail;
 
 export function getServerSideProps(context: any) {
   const id = context.params.id;
-  // const api = axios.get('http://localhost:4000/api/roadmap');
   const res = { data: '??' };
   const data = res.data;
 
