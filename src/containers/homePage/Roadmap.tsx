@@ -1,4 +1,4 @@
-import { primaryData } from '@/asset/roadmapData';
+import { categoryNRownum, primaryData } from '@/asset/roadmapData';
 import TitleNSelect from '@/components/roadmap/TitleNSelect';
 import { roadmapData } from '@/recoil/roadmap';
 import axios from 'axios';
@@ -55,10 +55,20 @@ function Roadmap() {
     }
   };
 
+  // const url =
+  //   'http://apis.data.go.kr/B490007/ncsStudyModule/openapi21?serviceKey=8J6CPUUandk0YLso7B5y/z0I67lSDrVpiQhJcmagUHOlDHLTkuQA84FEMIt3Ii//T2DDh/4lOxwMFhPJzFA6Mg==&numOfRows=281&pageNo=1&returnType=json&ncsLclasCd=02';
   const _getCourseData = async (category: string) => {
+    const serviceKey = decodeURI(process.env.NEXT_PUBLIC_SERVICE_KEY!);
+    const url = `http://apis.data.go.kr/B490007/ncsStudyModule/openapi21?serviceKey=${decodeURI(
+      '8J6CPUUandk0YLso7B5y/z0I67lSDrVpiQhJcmagUHOlDHLTkuQA84FEMIt3Ii//T2DDh/4lOxwMFhPJzFA6Mg==',
+    )}&numOfRows=${
+      categoryNRownum[category]
+    }&pageNo=1&returnType=json&ncsLclasCd=${category}`;
     const { data } = await axios.get(
-      `http://localhost:4000/api/roadmap/${category}`,
+      // `http://localhost:4000/api/roadmap/${category}`,
+      url,
     );
+    console.log(url);
     setData(data.data);
     const secondaryData = _getDataList(data.data, 'second');
     setSecondaryData(secondaryData);

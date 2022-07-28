@@ -37,7 +37,6 @@ function PersonalRoadmapScreen() {
     getPersonalRoadmap();
   }, []);
 
-  console.log(roadmapData);
   return (
     <div style={{ flex: 3, marginTop: '85px' }}>
       <Header

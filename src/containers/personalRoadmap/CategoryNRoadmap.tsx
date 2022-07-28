@@ -18,8 +18,6 @@ function CategoryNRoadmap({ roadmapList }: IProps) {
         `${item.ncsLclasCd} ${item.ncsMclasCd} ${item.ncsSclasCd} ${item.ncsSubdCd}` ===
         roadmapList.key,
     );
-    console.log(data.data);
-    console.log(roadmapList.key, ncsSubdCdnm);
     setCategoryTitle(ncsSubdCdnm);
   };
   useEffect(() => {
@@ -39,6 +37,7 @@ function CategoryNRoadmap({ roadmapList }: IProps) {
                 date={item.date}
                 progress={item.progress}
                 category={roadmapList.category}
+                modulePath={roadmapList.key}
               />
             ))}
           </RoadmapContainer>

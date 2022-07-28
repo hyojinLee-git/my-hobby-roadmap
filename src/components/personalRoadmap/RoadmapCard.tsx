@@ -1,6 +1,8 @@
+import { modulePathRecoil } from '@/recoil/til';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 
 interface IProps {
@@ -8,6 +10,7 @@ interface IProps {
   date: string;
   progress: number;
   category: string;
+  modulePath: string;
 }
 
 const icons: { [key: string]: any } = {
@@ -37,7 +40,9 @@ const icons: { [key: string]: any } = {
   '24': require('@/asset/icon/24.png'),
 };
 
-function RoadmapCard({ name, date, progress, category }: IProps) {
+function RoadmapCard({ name, date, progress, category, modulePath }: IProps) {
+  console.log(modulePath);
+  const setModulePath = useSetRecoilState(modulePathRecoil);
   return (
     <Container>
       <Image src={icons[category]} alt={category} width={120} height={120} />

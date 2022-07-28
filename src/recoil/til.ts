@@ -8,3 +8,8 @@ export const tilContent = atom<any>({
     date: '',
   },
 });
+
+export const modulePathRecoil = atom<string>({
+  key: 'modulePathRecoil',
+  default: '',
+});

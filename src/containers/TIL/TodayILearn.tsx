@@ -2,12 +2,13 @@ import Header from '@/components/common/Header';
 import TilList from '@/components/TIL/TilList';
 import { userInformation } from '@/recoil/global';
 import axios from 'axios';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import DatePicker from './DatePicker';
 import Editor from './Editor';
 import { getDatabase, ref, child, push, update } from 'firebase/database';
+import { modulePathRecoil } from '@/recoil/til';
 
 function TodayILearn() {
   const [dateList, setDateList] = useState<any>();
@@ -17,6 +18,7 @@ function TodayILearn() {
   const [edit, setEdit] = useState(false);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const modulePath = useRecoilValue(modulePathRecoil);
   const [today, setToday] = useState(
     `${new Date().getMonth() + 1}/${new Date().getDate()}`,
   );
@@ -72,7 +74,7 @@ function TodayILearn() {
       }-${new Date().getDate()}`,
       moduleName: '',
       moduleDesc: '',
-      modulePath: '02 01 01 01',
+      modulePath: modulePath,
       tilId: '',
       uid: userInfo.uid,
     };
