@@ -15,7 +15,6 @@ function RoadmapDetail({ item }: any) {
   const data = useRecoilValue(roadmapData);
 
   const _getData = () => {
-    console.log(data);
     const filterData = data.filter((i: any) => i.ncsSubdCdnm === item);
     setCourseData(filterData);
   };
