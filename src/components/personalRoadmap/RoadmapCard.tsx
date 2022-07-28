@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -43,10 +44,11 @@ function RoadmapCard({ name, date, progress, category }: IProps) {
       <div style={{ flex: 3, marginLeft: '16px', position: 'relative' }}>
         <Header>
           <Title>{name}</Title>
-          <Progress>{progress}%</Progress>
         </Header>
         <div>{date}</div>
-        <Button>바로가기</Button>
+        <Link passHref href={'/til'}>
+          <StyledLink>바로가기</StyledLink>
+        </Link>
       </div>
     </Container>
   );
@@ -81,7 +83,10 @@ const Progress = styled.div`
   font-size: 20px;
 `;
 
-const Button = styled.button`
+const StyledLink = styled.a`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: white;
   background: #2e5794;
   border: none;

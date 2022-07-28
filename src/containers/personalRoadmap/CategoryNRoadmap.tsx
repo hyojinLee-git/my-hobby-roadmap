@@ -1,5 +1,6 @@
 import RoadmapCard from '@/components/personalRoadmap/RoadmapCard';
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 interface IProps {
@@ -7,11 +8,29 @@ interface IProps {
 }
 
 function CategoryNRoadmap({ roadmapList }: IProps) {
+  const [categoryTitle, setCategoryTitle] = useState('' as any);
+  const _getData = async (category: string) => {
+    const { data } = await axios.get(
+      `http://localhost:4000/api/roadmap/${category}`,
+    );
+    const { ncsSubdCdnm } = data.data?.find(
+      (item: any) =>
+        `${item.ncsLclasCd} ${item.ncsMclasCd} ${item.ncsSclasCd} ${item.ncsSubdCd}` ===
+        roadmapList.key,
+    );
+    console.log(data.data);
+    console.log(roadmapList.key, ncsSubdCdnm);
+    setCategoryTitle(ncsSubdCdnm);
+  };
+  useEffect(() => {
+    _getData(roadmapList.category);
+  }, []);
+
   return (
     <div>
       {roadmapList.modules && (
         <>
-          <CategoryTitle>카테고리</CategoryTitle>
+          <CategoryTitle>{categoryTitle}</CategoryTitle>
           <RoadmapContainer>
             {Object.values(roadmapList.modules).map((item: any) => (
               <RoadmapCard
@@ -28,13 +47,13 @@ function CategoryNRoadmap({ roadmapList }: IProps) {
     </div>
   );
 }
-
 const CategoryTitle = styled.div`
   font-size: 18px;
   font-weight: 400;
   border-left: 2px solid;
   padding-left: 10px;
   margin-bottom: 8px;
+  margin-bottom: 12px;
 `;
 
 const RoadmapContainer = styled.div`
@@ -46,5 +65,4 @@ const RoadmapContainer = styled.div`
     display: block;
   }
 `;
-
 export default CategoryNRoadmap;

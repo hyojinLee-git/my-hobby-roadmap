@@ -7,7 +7,6 @@ import React, { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import CategoryNRoadmap from './CategoryNRoadmap';
-
 const categoryList = [
   {
     name: '중분류1',
@@ -18,20 +17,18 @@ const categoryList = [
     selected: false,
   },
 ];
-
 function PersonalRoadmapScreen() {
   const userInfo = useRecoilValue(userInformation);
   const [roadmapData, setRoadmapData] = useState<any>();
-
   const getPersonalRoadmap = async () => {
     const url = `${process.env.NEXT_PUBLIC_DATABASE_URL}/Users/${userInfo.uid}/myClass.json`;
     const { data } = await axios.get(url);
-
     if (data)
       setRoadmapData(
         Object.entries(data).map((item: any) => ({
           ...item[1],
           category: item[0].split(' ')[0],
+          key: item[0],
         })),
       );
   };
@@ -40,18 +37,21 @@ function PersonalRoadmapScreen() {
     getPersonalRoadmap();
   }, []);
 
+  console.log(roadmapData);
   return (
     <div style={{ flex: 3, marginTop: '85px' }}>
       <Header
         title={`${userInfo.name ? userInfo.name : userInfo.email}님의 로드맵`}
       />
       <div style={{ display: 'flex', marginBottom: '85px' }}>
+        {/* <div style={{ display: 'flex', marginBottom: '85px' }}>
         {categoryList.map((item, idx) => (
           <CategoryButton name={item.name} key={idx} selected={item.selected} />
         ))}
         <Link href="/roadmap" passHref>
           <CreateRoadmap selected={false}>+ 로드맵 생성하기</CreateRoadmap>
         </Link>
+        </div>*/}
       </div>
       <div>
         {roadmapData?.map((item: any, index: number) => (
