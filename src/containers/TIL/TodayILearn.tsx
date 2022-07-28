@@ -107,7 +107,7 @@ function TodayILearn() {
             <Button onClick={() => setEdit(true)}>추가하기</Button>
             {todayTil?.map((item: any, index: number) => (
               <TilList
-                link={index + 1}
+                link={item.moduleName}
                 key={item.moduleName}
                 moduleName={item.moduleName}
                 content={item.content}
