@@ -20,12 +20,13 @@ function CategoryNRoadmap({ roadmapList }: IProps) {
       // `http://localhost:4000/api/roadmap/${category}`,
       url,
     );
-    const { ncsSubdCdnm } = data.data?.find(
+
+    const { ncsSclasCdnm } = data.data?.find(
       (item: any) =>
         `${item.ncsLclasCd} ${item.ncsMclasCd} ${item.ncsSclasCd} ${item.ncsSubdCd}` ===
         roadmapList.key,
     );
-    setCategoryTitle(ncsSubdCdnm);
+    setCategoryTitle(ncsSclasCdnm);
   };
   useEffect(() => {
     _getData(roadmapList.category);

@@ -41,7 +41,6 @@ const icons: { [key: string]: any } = {
 };
 
 function RoadmapCard({ name, date, progress, category, modulePath }: IProps) {
-  console.log(modulePath);
   const setModulePath = useSetRecoilState(modulePathRecoil);
   return (
     <Container>
@@ -51,7 +50,7 @@ function RoadmapCard({ name, date, progress, category, modulePath }: IProps) {
           <Title>{name}</Title>
         </Header>
         <div>{date}</div>
-        <Link passHref href={'/til'}>
+        <Link passHref href={`/til/${name}`}>
           <StyledLink>바로가기</StyledLink>
         </Link>
       </div>
