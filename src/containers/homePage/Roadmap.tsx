@@ -64,11 +64,7 @@ function Roadmap() {
     )}&numOfRows=${
       categoryNRownum[category]
     }&pageNo=1&returnType=json&ncsLclasCd=${category}`;
-    const { data } = await axios.get(
-      // `http://localhost:4000/api/roadmap/${category}`,
-      url,
-    );
-    console.log(url);
+    const { data } = await axios.get(url);
     setData(data.data);
     const secondaryData = _getDataList(data.data, 'second');
     setSecondaryData(secondaryData);

@@ -80,7 +80,6 @@ function TodayILearn() {
     };
     const updates: { [key: string]: Object } = {};
     updates[`/TIL/${newPostKey}`] = postData;
-    console.log(postData);
     update(ref(db), updates);
     setEdit(false);
   };
