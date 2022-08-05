@@ -3,20 +3,15 @@ import styled from 'styled-components';
 
 interface IProps {
   date: string;
-  written: boolean;
   selected: boolean;
   clickCount: number;
+  color: string;
   onClickDate: Function;
 }
 
-function DateItem({
-  date,
-  written,
-  selected,
-  clickCount,
-  onClickDate,
-}: IProps) {
+function DateItem({ date, selected, clickCount, onClickDate, color }: IProps) {
   const sliderRef: any = useRef();
+
   useEffect(() => {
     sliderRef.current.style.transition = 'all 0.5s ease-in-out';
     sliderRef.current.style.transform = `translateX(${-70 * clickCount}px)`;
@@ -29,7 +24,7 @@ function DateItem({
       ref={sliderRef}
     >
       <div>{date}</div>
-      <Circle written={written} />
+      <Circle color={color} />
     </Container>
   );
 }
@@ -56,8 +51,7 @@ const Circle = styled.div`
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: ${(props: { written: boolean }) =>
-    props.written ? '#87DCB4' : '#C4C4C4'};
+  background-color: ${(props: { color: string }) => props.color};
   margin-bottom: 4px;
 `;
 

@@ -3,18 +3,19 @@ import TilList from '@/components/TIL/TilList';
 import { userInformation } from '@/recoil/global';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import DatePicker from './DatePicker';
 import Editor from './Editor';
 import { getDatabase, ref, child, push, update } from 'firebase/database';
-import { modulePathRecoil } from '@/recoil/til';
+import { modulePathRecoil, tilList, todayTilList } from '@/recoil/til';
 
 function TodayILearn() {
   const [dateList, setDateList] = useState<any>();
+  const [loadingState, setLoadingState] = useState(false);
   const userInfo = useRecoilValue(userInformation);
-  const [til, setTil] = useState<any>();
-  const [todayTil, setTodayTil] = useState<any>();
+  const [til, setTil] = useRecoilState(tilList);
+  const [todayTil, setTodayTil] = useRecoilState(todayTilList);
   const [edit, setEdit] = useState(false);
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -24,16 +25,28 @@ function TodayILearn() {
   );
 
   const getDateList = () => {
-    const newList = [];
+    const newList = [
+      '7/30',
+      '7/31',
+      '8/1',
+      '8/2',
+      '8/3',
+      '8/4',
+      '8/5',
+      '8/6',
+      '8/7',
+      '8/8',
+      '8/9',
+      '8/10',
+    ];
     let month = new Date().getMonth() + 1;
     let day = new Date().getDate();
-    for (let i = -5; i <= 5; i++) {
-      const newItem = {
-        date: `${month}/${day + i}`,
-        written: false,
-      };
-      newList.push(newItem);
-    }
+    // for (let i = -5; i <= 5; i++) {
+    //   const newItem = `${month}/${day + i}`;
+    //   newList.push(newItem);
+    // }
+
+    console.log(newList);
     setDateList(newList);
   };
 
@@ -53,13 +66,20 @@ function TodayILearn() {
   };
 
   const getTIL = async () => {
-    const { data } = await axios.get(
-      `${process.env.NEXT_PUBLIC_DATABASE_URL}/TIL.json`,
-    );
-    const tilData = Object.values(data).filter(
-      (item: any) => item.uid === userInfo.uid,
-    );
-    setTil(tilData);
+    setLoadingState(true);
+    try {
+      const { data } = await axios.get(
+        `${process.env.NEXT_PUBLIC_DATABASE_URL}/TIL.json`,
+      );
+      const tilData = Object.values(data).filter(
+        (item: any) => item.uid === userInfo.uid,
+      );
+      setTil(tilData);
+      setLoadingState(false);
+    } catch (e) {
+      setLoadingState(false);
+      throw new Error();
+    }
   };
 
   const postTil = async () => {
@@ -93,6 +113,8 @@ function TodayILearn() {
     getTodayContent();
   }, [til, today]);
 
+  if (loadingState) return <div>loading</div>;
+
   return (
     <div style={{ flex: 3, marginTop: '85px' }}>
       <Header title={'Today I Learn'} />
@@ -102,7 +124,7 @@ function TodayILearn() {
         setToday={setToday}
         today={today}
       />
-      <div style={{ width: '90%', marginTop: '50px' }}>
+      <div style={{ width: '100%', marginTop: '50px' }}>
         {todayTil?.length !== 0 && !edit ? (
           <TilBox>
             <Button onClick={() => setEdit(true)}>추가하기</Button>
