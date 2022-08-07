@@ -11,6 +11,7 @@ import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import styles from '../../styles/Home.module.css';
 import { getDatabase, ref, child, push, update } from 'firebase/database';
+import { modulesData } from '@/recoil/roadmap';
 
 function TilDetail() {
   const router = useRouter();
@@ -26,6 +27,10 @@ function TilDetail() {
   const [today, setToday] = useState(
     `${new Date().getMonth() + 1}/${new Date().getDate()}`,
   );
+  const courseData = useRecoilValue(modulesData);
+  const [modulePath, setModulePath] = useState('');
+  const [moduleSeq, setModuleSeq] = useState('' as string);
+  const db = getDatabase();
 
   const getDateList = () => {
     const newList = [];
@@ -54,10 +59,24 @@ function TilDetail() {
         item[1].uid === userInfo.uid && item[1].moduleName === router.query.id,
     );
 
-    setTilId(tilId[0]);
-    setTilData(tilId[1]);
-    setSubData(tilData?.[0]?.moduleDesc);
-    setContent(tilData?.[0]?.content);
+    if (tilData && tilId) {
+      setTilId(tilId[0]);
+      setTilData(tilId[1]);
+      setSubData(tilData[0]?.moduleDesc);
+      setContent(tilData[0]?.content);
+    } else {
+      setEditMode(true);
+      setContent('');
+      const selectModule = courseData.filter(
+        (item: any) => item.learnModulName === router.query.id,
+      );
+      console.log(router.query.id);
+      setSubData(selectModule[0].learnModulText);
+      setModulePath(
+        `${selectModule[0].ncsLclasCd} ${selectModule[0].ncsMclasCd} ${selectModule[0].ncsSclasCd} ${selectModule[0].ncsSubdCd}`,
+      );
+      setModuleSeq(selectModule[0].learnModulSeq);
+    }
     setTitle(router.query.id);
   };
 
@@ -65,16 +84,59 @@ function TilDetail() {
     setEditMode(true);
   };
 
+  const postTil = async () => {
+    if (!content) {
+      setEditMode(false);
+      return;
+    }
+    const newPostKey = push(child(ref(db), 'posts')).key;
+    const postData = {
+      content,
+      date: `${new Date().getFullYear()}-${
+        new Date().getMonth() + 1 > 10
+          ? new Date().getMonth() + 1
+          : `0${new Date().getMonth() + 1}`
+      }-${
+        new Date().getDate() > 10
+          ? new Date().getDate()
+          : `0${new Date().getDate()}`
+      }`,
+      moduleName: router.query.id,
+      moduleDesc: subData,
+      modulePath: modulePath,
+      tilId: '',
+      uid: userInfo.uid,
+    };
+    const updates: { [key: string]: Object } = {};
+    updates[`/TIL/${newPostKey}`] = postData;
+    update(ref(db), updates);
+    setEditMode(false);
+  };
+
+  const postUser = async () => {
+    const postData: { [key: string]: any } = {};
+    postData[moduleSeq] = router.query.id;
+    console.log(postData);
+    const updates: { [key: string]: Object } = {};
+    updates[`/Users/${userInfo.uid}/myClass/${modulePath}/modules`] = postData;
+    update(ref(db), updates);
+    setEditMode(false);
+  };
+
   const editContent = () => {
     setEditMode(false);
     console.log(title, content);
     // firebase update
-    const db = getDatabase();
-    const postData = { ...tilData, content };
-    const updates: { [key: string]: Object } = {};
-    updates[`/TIL/${tilId}`] = postData;
-    console.log(postData);
-    update(ref(db), updates);
+    if (tilId) {
+      const postData = { ...tilData, content };
+      const updates: { [key: string]: Object } = {};
+      updates[`/TIL/${tilId}`] = postData;
+      console.log(postData);
+      update(ref(db), updates);
+    } else {
+      postTil();
+      postUser();
+    }
   };
 
   useEffect(() => {

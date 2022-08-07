@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -12,7 +13,12 @@ function CourseCard({ index, title, exp }: IProps) {
     <Container>
       <Color color={index % 2 === 0 ? '#5970D2' : '#ACBCFF'} />
       <div>
-        <Title>{title}</Title>
+        <TitleContainer>
+          <Title>{title}</Title>
+          <Link passHref href={`/til/${title}`}>
+            <Checkbox />
+          </Link>
+        </TitleContainer>
         <Button>{exp}XP</Button>
       </div>
     </Container>
@@ -32,6 +38,7 @@ const Container = styled.div`
     margin-bottom: 48px;
   }
 `;
+
 const Color = styled.div`
   width: 16px;
   height: 100%;
@@ -39,6 +46,14 @@ const Color = styled.div`
   border-radius: 16px 0px 0px 16px;
   margin-right: 33px;
 `;
+
+const TitleContainer = styled.div`
+  display: flex;
+  width: 470px;
+  align-items: center;
+  justify-content: space-between;
+`;
+
 const Title = styled.h2`
   margin: 14px 0;
 `;
@@ -53,4 +68,11 @@ const Button = styled.button`
   right: 8px;
   bottom: 8px;
 `;
+
+const Checkbox = styled.div`
+  width: 29px;
+  height: 29px;
+  border: 1px solid #5970d2;
+`;
+
 export default CourseCard;

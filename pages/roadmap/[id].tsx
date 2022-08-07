@@ -7,15 +7,16 @@ import styles from '../../styles/Home.module.css';
 import Header from '@/components/common/Header';
 import NavigationBar from '@/components/common/navigation/NavigationBar';
 import CourseCard from '@/components/roadmap/CourseCard';
-import { useRecoilValue } from 'recoil';
-import { roadmapData } from '@/recoil/roadmap';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { modulesData, roadmapData } from '@/recoil/roadmap';
 
 function RoadmapDetail({ item }: any) {
-  const [courseData, setCourseData] = useState([] as any);
+  const [courseData, setCourseData] = useRecoilState(modulesData);
   const data = useRecoilValue(roadmapData);
 
   const _getData = () => {
     const filterData = data.filter((i: any) => i.ncsSubdCdnm === item);
+    console.log(filterData);
     setCourseData(filterData);
   };
   useEffect(() => {

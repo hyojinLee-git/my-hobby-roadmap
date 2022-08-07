@@ -9,6 +9,7 @@ import DatePicker from './DatePicker';
 import Editor from './Editor';
 import { getDatabase, ref, child, push, update } from 'firebase/database';
 import { modulePathRecoil, tilList, todayTilList } from '@/recoil/til';
+import Lottie from '@/components/TIL/Lottie';
 
 function TodayILearn() {
   const [dateList, setDateList] = useState<any>();
@@ -82,28 +83,6 @@ function TodayILearn() {
     }
   };
 
-  const postTil = async () => {
-    const db = getDatabase();
-    const newPostKey = push(child(ref(db), 'posts')).key;
-    const postData = {
-      content,
-      date: `${new Date().getFullYear()}-${
-        new Date().getMonth() + 1 > 10
-          ? new Date().getMonth() + 1
-          : `0${new Date().getMonth() + 1}`
-      }-${new Date().getDate()}`,
-      moduleName: '',
-      moduleDesc: '',
-      modulePath: modulePath,
-      tilId: '',
-      uid: userInfo.uid,
-    };
-    const updates: { [key: string]: Object } = {};
-    updates[`/TIL/${newPostKey}`] = postData;
-    update(ref(db), updates);
-    setEdit(false);
-  };
-
   useEffect(() => {
     getDateList();
     getTIL();
@@ -127,7 +106,7 @@ function TodayILearn() {
       <div style={{ width: '100%', marginTop: '50px' }}>
         {todayTil?.length !== 0 && !edit ? (
           <TilBox>
-            <Button onClick={() => setEdit(true)}>추가하기</Button>
+            {/* <Button onClick={() => setEdit(true)}>추가하기</Button> */}
             {todayTil?.map((item: any, index: number) => (
               <TilList
                 link={item.moduleName}
@@ -140,13 +119,17 @@ function TodayILearn() {
           </TilBox>
         ) : (
           <TilBox>
-            <Button onClick={postTil}>등록하기</Button>
+            {/* <Button onClick={postTil}>등록하기</Button>
             <Editor
               title={title}
               setTitle={setTitle}
               content={content}
               setContent={setContent}
-            />
+            /> */}
+            <Lottie />
+            <EmptyText>
+              {'작성한 오늘의 til이 없습니다.\n학습을 시작하세요!'}
+            </EmptyText>
           </TilBox>
         )}
       </div>
@@ -157,8 +140,15 @@ function TodayILearn() {
 const TilBox = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  justify-content: center;
+  align-items: center;
   width: 100%;
+`;
+
+const EmptyText = styled.div`
+  white-space: pre-wrap;
+  text-align: center;
+  font-size: 24px;
 `;
 
 const Button = styled.button`
