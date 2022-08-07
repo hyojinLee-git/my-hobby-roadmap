@@ -6,8 +6,6 @@ import React, { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import DatePicker from './DatePicker';
-import Editor from './Editor';
-import { getDatabase, ref, child, push, update } from 'firebase/database';
 import { modulePathRecoil, tilList, todayTilList } from '@/recoil/til';
 import Lottie from '@/components/TIL/Lottie';
 
@@ -26,26 +24,27 @@ function TodayILearn() {
   );
 
   const getDateList = () => {
-    const newList = [
-      '7/30',
-      '7/31',
-      '8/1',
-      '8/2',
-      '8/3',
-      '8/4',
-      '8/5',
-      '8/6',
-      '8/7',
-      '8/8',
-      '8/9',
-      '8/10',
-    ];
+    // const newList = [
+    //   '7/30',
+    //   '7/31',
+    //   '8/1',
+    //   '8/2',
+    //   '8/3',
+    //   '8/4',
+    //   '8/5',
+    //   '8/6',
+    //   '8/7',
+    //   '8/8',
+    //   '8/9',
+    //   '8/10',
+    // ];
+    const newList = [];
     let month = new Date().getMonth() + 1;
     let day = new Date().getDate();
-    // for (let i = -5; i <= 5; i++) {
-    //   const newItem = `${month}/${day + i}`;
-    //   newList.push(newItem);
-    // }
+    for (let i = -5; i <= 5; i++) {
+      const newItem = `${month}/${day + i}`;
+      newList.push(newItem);
+    }
 
     console.log(newList);
     setDateList(newList);
@@ -126,7 +125,7 @@ function TodayILearn() {
               content={content}
               setContent={setContent}
             /> */}
-            <Lottie />
+            {/* <Lottie /> */}
             <EmptyText>
               {'작성한 오늘의 til이 없습니다.\n학습을 시작하세요!'}
             </EmptyText>
@@ -149,6 +148,7 @@ const EmptyText = styled.div`
   white-space: pre-wrap;
   text-align: center;
   font-size: 24px;
+  margin-top: 100px;
 `;
 
 const Button = styled.button`
