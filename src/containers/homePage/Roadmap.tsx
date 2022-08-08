@@ -55,15 +55,8 @@ function Roadmap() {
     }
   };
 
-  // const url =
-  //   'http://apis.data.go.kr/B490007/ncsStudyModule/openapi21?serviceKey=8J6CPUUandk0YLso7B5y/z0I67lSDrVpiQhJcmagUHOlDHLTkuQA84FEMIt3Ii//T2DDh/4lOxwMFhPJzFA6Mg==&numOfRows=281&pageNo=1&returnType=json&ncsLclasCd=02';
   const _getCourseData = async (category: string) => {
-    const serviceKey = decodeURI(process.env.NEXT_PUBLIC_SERVICE_KEY!);
-    const url = `http://apis.data.go.kr/B490007/ncsStudyModule/openapi21?serviceKey=${decodeURI(
-      '8J6CPUUandk0YLso7B5y/z0I67lSDrVpiQhJcmagUHOlDHLTkuQA84FEMIt3Ii//T2DDh/4lOxwMFhPJzFA6Mg==',
-    )}&numOfRows=${
-      categoryNRownum[category]
-    }&pageNo=1&returnType=json&ncsLclasCd=${category}`;
+    const url = `${process.env.NEXT_PUBLIC_BASE_URL}?category=${category}`;
     const { data } = await axios.get(url);
     setData(data.data);
     const secondaryData = _getDataList(data.data, 'second');
