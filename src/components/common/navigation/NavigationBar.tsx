@@ -1,4 +1,5 @@
 import { selectedMenu } from '@/recoil/global';
+import Image from 'next/image';
 import Link from 'next/link';
 import { Router, useRouter } from 'next/router';
 import React, { useEffect } from 'react';
@@ -43,6 +44,8 @@ const navMenu = [
   },
 ];
 
+const logo = require('@/asset/IZEL.png');
+
 function NavigationBar() {
   const [menu, setMenu] = useRecoilState(selectedMenu);
   const router = useRouter();
@@ -55,7 +58,8 @@ function NavigationBar() {
 
   return (
     <Nav>
-      <div style={{ marginBottom: '16px' }}>
+      <Image src={logo} alt="logo" width={60} height={20} />
+      <div style={{ marginBottom: '16px', marginTop: '40px' }}>
         <HamburgerBtn>
           <MdMenu size={23} />
         </HamburgerBtn>
@@ -82,7 +86,7 @@ const Nav = styled.nav`
   flex-direction: column;
   align-items: center;
   flex: 2;
-  padding-top: 55px;
+  padding-top: 35px;
   margin-top: 23px;
 `;
 
