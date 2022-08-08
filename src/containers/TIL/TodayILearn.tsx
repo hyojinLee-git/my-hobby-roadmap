@@ -45,8 +45,6 @@ function TodayILearn() {
       const newItem = `${month}/${day + i}`;
       newList.push(newItem);
     }
-
-    console.log(newList);
     setDateList(newList);
   };
 

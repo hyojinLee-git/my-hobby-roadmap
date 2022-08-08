@@ -33,7 +33,7 @@ function AlarmScreen() {
     }
   };
   return (
-    <div style={{ flex: 3, marginTop: '85px', border: '1px solid red' }}>
+    <div style={{ flex: 3, marginTop: '85px' }}>
       <Header title="알림" />
       {alarms.map((item, index) => {
         return (

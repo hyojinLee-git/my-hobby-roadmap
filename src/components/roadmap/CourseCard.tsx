@@ -11,7 +11,9 @@ interface IProps {
 function CourseCard({ index, title, exp }: IProps) {
   return (
     <Container>
-      <Color color={index % 2 === 0 ? '#5970D2' : '#ACBCFF'} />
+      {/* <Color color={index % 2 === 0 ? '#5970D2' : '#ACBCFF'} /> */}
+      <Color color={'#5970D2'} />
+
       <div>
         <TitleContainer>
           <Title>{title}</Title>

@@ -14,7 +14,7 @@ function DateItem({ date, selected, clickCount, onClickDate, color }: IProps) {
 
   useEffect(() => {
     sliderRef.current.style.transition = 'all 0.5s ease-in-out';
-    sliderRef.current.style.transform = `translateX(${-70 * clickCount}px)`;
+    // sliderRef.current.style.transform = `translateX(${-70 * clickCount}px)`;
   }, [clickCount]);
 
   return (

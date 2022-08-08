@@ -13,7 +13,7 @@ interface IProps {
 }
 
 function DatePicker({ dateList, setDateList, setToday, today }: IProps) {
-  const [clickCount, setClickCount] = useState(2);
+  const [clickCount, setClickCount] = useState(0);
   const [tilCount, setTilCount] = useState<number[]>([]);
   const til = useRecoilValue(tilList);
 
